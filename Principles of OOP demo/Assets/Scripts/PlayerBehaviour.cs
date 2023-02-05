@@ -7,8 +7,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     [SerializeField] float speed;
     [SerializeField] float jumpForce;
-   // [SerializeField] float gravityScale;
-    public float horizontalInput;
+    private float horizontalInput;
    
 
     // Start is called before the first frame update
