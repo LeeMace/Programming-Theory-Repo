@@ -7,7 +7,7 @@ public class FollowPlayer : MonoBehaviour
     private Transform player;
     private Vector3 tempPos;
 
-    [SerializeField] private float minX, maxX;
+    private float minX = -70, maxX = 90;
 
     private void Start()
     {

@@ -4,37 +4,55 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    [SerializeField] Rigidbody2D rb;
-    [SerializeField] float speed;
-    [SerializeField] float jumpForce;
-    private float horizontalInput;
+    [SerializeField] protected Rigidbody2D rb;
+    protected float speed = 10;
+    protected float jumpForce = 5;
+    protected float horizontalInput;
+    private float xRange = 80;
    
-
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        SayWhatPlayerYouAre();
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         Move();
         Jump();
+        StayInBounds();
     }
 
-    void Move()
+    public virtual void Move()
     {
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
     }
 
-    void Jump()
+    public virtual void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Vector2 jumpVelocity = new Vector2(rb.velocity.x, jumpForce);
             rb.velocity = jumpVelocity;
+        }
+    }
+
+    public virtual void SayWhatPlayerYouAre()
+    {
+        Debug.Log("Hello friend, I am the normal player. I have the normal movement speed and jump strength.");
+    }
+
+    void StayInBounds()
+    {
+        if (transform.position.x < -xRange)
+        {
+            transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+        }
+
+        if (transform.position.x > xRange)
+        {
+            transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
     }
 }
