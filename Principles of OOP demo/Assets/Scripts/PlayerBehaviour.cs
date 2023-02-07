@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    //ENCAPSULATION
     [SerializeField] protected Rigidbody2D rb;
     protected float speed = 10;
     protected float jumpForce = 5;
@@ -15,7 +16,7 @@ public class PlayerBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         SayWhatPlayerYouAre();
     }
-
+    //ABSTRACTION
     void LateUpdate()
     {
         Move();
