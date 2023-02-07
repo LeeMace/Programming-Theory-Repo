@@ -6,16 +6,16 @@ public class JumpPlayer : PlayerBehaviour
 {
     public override void Jump()
     {
-        Vector2 jumpVelocity = new Vector2(rb.velocity.x, (jumpForce*2));
-        base.Jump();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Vector2 jumpVelocity = new Vector2(rb.velocity.x, (jumpForce*2));
+            rb.velocity = jumpVelocity;
+        }
+
     }
     public override void SayWhatPlayerYouAre()
     {
         Debug.Log("Hi there pal, I am Jumpy, not from nervousness, but from my jump ability.");
 
-    }
-    public override void Move()
-    {
-        base.Move();
     }
 }
